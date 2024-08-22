@@ -9,14 +9,25 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@iden3/js-iden3-auth": "^1.4.0",
+    "axios": "^1.7.4",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "did-jwt-vc": "^4.0.4",
     "dotenv": "^16.4.5",
+    "ethers": "^6.13.2",
+    "ethr-did": "^3.0.21",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.5.3",
-    "nodemon": "^3.1.4"
+    "node-fetch": "^3.3.2",
+    "nodemon": "^3.1.4",
+    "qrcode": "^1.5.4",
+    "raw-body": "^3.0.0",
+    "url": "^0.11.4",
+    "uuid": "^10.0.0"
   }
 }
