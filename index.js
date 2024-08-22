@@ -315,122 +315,6 @@ app.get("/", (req, res) => {
     res.send(`Welcome to your backend Polygon ID verifier server! Available routes: ${Object.values(apiPath).join(", ")}.`);
 });
 
-// const HOSTED_SERVER_URL = 'https://7e94-2401-4900-1c1b-9bf6-3d40-6fa2-bb80-b978.ngrok-free.app';
-
-
-// app.get(apiPath.getAuthQr, async (req, res) => {
-//     const sessionId = generateSessionId();
-//     const fullName = req.query.fullName;
-
-//     console.log(`getAuthQr for ${sessionId} with fullName ${fullName}`);
-//     console.log(HOSTED_SERVER_URL);
-//     const audience = "did:polygonid:polygon:amoy:2qVQhnN8cTvWLGgdWkCjrLRsV3ZEdBtRA6MjV7NM7z";
-
-//     const uri = `${HOSTED_SERVER_URL}${apiPath.handleVerification}?sessionId=${sessionId}`;
-//     // const request = auth.createAuthorizationRequest(
-//     //     "Must be the owner of this identity!",
-//     //     VERIFIER_DID,
-//     //     uri
-//     // );
-//     // request.id = sessionId;
-//     // request.thid = sessionId;
-
-//     // const credentialSubject = {
-//     //     fullName: {
-//     //         $eq: fullName
-//     //     }
-//     // };
-//     // const customProofRequest = AadharCardSchema(credentialSubject);
-
-//     // request.body.scope = [customProofRequest];
-//     const request = auth.createAuthorizationRequest("test flow", audience, uri);
-
-//     request.id = "7f38a193-0918-4a48-9fac-36adfdb8b542";
-//     request.thid = "7f38a193-0918-4a48-9fac-36adfdb8b542";
-
-//     // Add request for a specific proof
-//     const proofRequest = {
-//         id: 1,
-//         circuitId: "credentialAtomicQuerySigV2",
-//         query: {
-//             allowedIssuers: ["*"],
-//             type: "KYCAgeCredential",
-//             context:
-//                 "https://raw.githubusercontent.com/iden3/claim-schema-vocab/main/schemas/json-ld/kyc-v3.json-ld",
-//             credentialSubject: {
-//                 birthday: {
-//                     $lt: 20000101,
-//                 },
-//             },
-//         },
-//     };
-//     const scope = request.body.scope ?? [];
-//     request.body.scope = [...scope, proofRequest];
-
-//     authRequests.set(`${sessionId}`, request);
-//     // console.log(request);
-//     return res.status(200).set("Content-Type", "application/json").send(request);
-// });
-
-// app.post(apiPath.handleVerification, async (req, res) => {
-//     const sessionId = req.query.sessionId;
-//     // console.log(sessionId);
-//     // get JWZ token params from the post request
-//     const raw = await getRawBody(req);
-//     // console.log(raw);
-//     const tokenStr = raw.toString().trim();
-//     console.log(tokenStr);
-
-//     const ethURL = "https://rpc-amoy.polygon.technology/";
-//     const contractAddress = "0x1a4cC30f2aA0377b0c3bc9848766D90cb4404124";
-//     const keyDIR = "./keys";
-
-//     const ethStateResolver = new resolver.EthStateResolver(
-//         ethURL,
-//         contractAddress
-//     );
-
-//     const resolvers = {
-//         ["polygon:amoy"]: ethStateResolver,
-//     };
-
-//     // fetch authRequest from sessionID
-//     const authRequest = authRequests.get(`${sessionId}`);
-
-//     // EXECUTE VERIFICATION
-//     const verifier = await auth.Verifier.newVerifier({
-//         stateResolver: resolvers,
-//         circuitsDir: path.join(__dirname, keyDIR),
-//         ipfsGatewayURL: "https://ipfs.io",
-//     });
-
-//     try {
-//         const opts = {
-//             AcceptedStateTransitionDelay: 5 * 60 * 1000, // 5 minute
-//         };
-//         authResponse = await verifier.fullVerify(tokenStr, authRequest, opts);
-//     } catch (error) {
-//         console.log(error);
-//         return res.status(500).send(error);
-//     }
-//     return res
-//         .status(200)
-//         .set("Content-Type", "application/json")
-//         .send(authResponse);
-// });
-
-// app.get(apiPath.checkStatus, (req, res) => {
-//     const sessionId = req.query.sessionId;
-//     const authRequest = authRequests.get(sessionId);
-
-//     if (!authRequest) {
-//         return res.status(404).json({ error: "Session not found" });
-//     }
-
-//     return res.status(200).json({ status: authRequest.status, response: authRequest.response });
-// });
-
-
 
 app.use(express.static("../static"));
 
@@ -603,24 +487,8 @@ app.post('/api/claim-credential', async (req, res) => {
 });
 
 
-
-
-
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
 module.exports = app;
-
-
-
-//https://self-hosted-platform.polygonid.me
-
-// did: polygonid: polygon: amoy: 2qVQhnN8cTvWLGgdWkCjrLRsV3ZEdBtRA6MjV7NM7z
-
-
-// 6029f0a4-6006-11ef-b8a3-0242ac120006
-
-
-
-// 2qbFoc6HpSoUtfMkpW74ph2PJJzsAL3eBZ42JyqMyp
